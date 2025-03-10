@@ -7,6 +7,11 @@ char *morse_letters[] = {
     ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.",
     "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
 
+char *morse_numbers[] = {
+    // The numbers 0-9 in Morse code
+    "-----", ".----", "..---", "...--", "....-",
+    ".....", "-....", "--...", "---..", "----."};
+
 void blink_dit_or_dah(char dit_or_dah)
 {
   digitalWrite(LED_BUILTIN, HIGH);
@@ -14,10 +19,15 @@ void blink_dit_or_dah(char dit_or_dah)
 
   // blink dot or dash 
   if (dit_or_dah == '.')
+  {
     delay(DOT_TIME);
+    Serial.println('.');
+  }
   else
+  {
     delay(DASH_TIME);
-
+    Serial.println('-');
+  }
   digitalWrite(LED_BUILTIN, LOW);
 
   // delay between the same letter time
@@ -50,6 +60,12 @@ bool dispChar(const char ch)                                       // displays t
   {
     Serial.println(ch);
     blink_morse_code(morse_letters[ch - 'a']);
+  }
+  // Check for numbers
+  else if (ch >= '0' && ch <= '9')
+  {
+    Serial.println(ch);
+    blink_morse_code(morse_numbers[ch - '0']);
   }
   // Check for space between words
   else if (ch == ' ')
