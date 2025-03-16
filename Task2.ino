@@ -2,7 +2,7 @@
 #include <BH1750FVI.h>
 #include <SPI.h>
 #include <WiFiNINA.h>
-#include "secrets.h" 
+#include "secrets - gh.h" 
 #include <ThingSpeak.h>
 
 // Create an instance of the DHT11 class. Pin 7 to Signal
