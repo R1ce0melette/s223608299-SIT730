@@ -6,4 +6,4 @@ Hardware:
 - LED
 - 220 Ohm resistor.
 
-#Practical exercise to use MQTT for communication in IoT network.
+#Practical exercise about using MQTT for communication in IoT network.
