@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LED Control Panel</title>
+  <style>
+    button { margin: 5px; padding: 10px; }
+    input { width: 60px; }
+  </style>
+</head>
+<body>
+  <h1>LED Controller</h1>
+  
+  <div>
+    <h3>Red LED</h3>
+    <button onclick="toggleLED('red', 'on')">Turn ON</button>
+    <button onclick="toggleLED('red', 'off')">Turn OFF</button>
+    <input type="number" id="redTimer" placeholder="sec">
+    <button onclick="startTimer('red')">Start Timer</button>
+  </div>
+
+  <div>
+    <h3>Yellow LED</h3>
+    <button onclick="toggleLED('yellow', 'on')">Turn ON</button>
+    <button onclick="toggleLED('yellow', 'off')">Turn OFF</button>
+    <input type="number" id="yellowTimer" placeholder="sec">
+    <button onclick="startTimer('yellow')">Start Timer</button>
+  </div>
+
+  <div>
+    <h3>Green LED</h3>
+    <button onclick="toggleLED('green', 'on')">Turn ON</button>
+    <button onclick="toggleLED('green', 'off')">Turn OFF</button>
+    <input type="number" id="greenTimer" placeholder="sec">
+    <button onclick="startTimer('green')">Start Timer</button>
+  </div>
+
+  <script>
+    const arduinoIP = "http://192.168.0.251"; 
+	
+	const ledStates = {
+    red: 'off',
+    yellow: 'off',
+    green: 'off'
+	};
+	
+    function toggleLED(color, state) {
+      fetch(`${arduinoIP}/led?color=${color}&state=${state}`)
+      .then(res => {
+        ledStates[color] = state; // Update local state
+        console.log(`Set ${color} to ${state}`);
+      })
+      .catch(err => console.error("Request failed", err));
+    }
+
+    function startTimer(color) {
+      const inputId = color + "Timer";
+      const timeInSec = parseInt(document.getElementById(inputId).value);
+      if (!isNaN(timeInSec)) {
+        setTimeout(() => {
+			const currentState = ledStates[color];
+			const newState = currentState === 'on' ? 'off' : 'on';
+			ledStates[color] = newState;
+			toggleLED(color, newState);
+		}, timeInSec * 1000);
+	  } else {
+        alert("Please enter a valid time in seconds");
+      }
+    }
+  </script>
+</body>
+</html>
