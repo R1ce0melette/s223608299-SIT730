@@ -6,7 +6,7 @@ const char* ssid = "<SSID>"; //WIFI NAME
 const char* password = "<WIFI PASSWORD>"; //WIFI PASSWORD
 
 // MQTT broker info
-const char* mqttBroker = "192.168.0.253";  // Your Raspberry Pi IP
+const char* mqttBroker = "RPi IP address";  // Your Raspberry Pi IP
 const int mqttPort = 1883;
 
 // LED PWM pins
