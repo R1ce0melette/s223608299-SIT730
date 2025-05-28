@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LED Control</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <label><input type="checkbox" id="autoToggle"> Auto Mode</label>
+
+    <div>
+        <label>LED 1: <input type="range" id="led1" min="0" max="255"></label>
+    </div>
+    <div>
+        <label>LED 2: <input type="range" id="led2" min="0" max="255"></label>
+    </div>
+    <div>
+        <label>LED 3: <input type="range" id="led3" min="0" max="255"></label>
+    </div>
+</body>
+</html>
+

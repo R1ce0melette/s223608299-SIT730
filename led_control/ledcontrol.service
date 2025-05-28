@@ -1,0 +1,13 @@
+[Unit]
+Description=Smart LED Control Flask App
+After=network.target
+
+[Service]
+User=dhlinc
+WorkingDirectory=__REPLACED__
+ExecStart=__REPLACED__
+Restart=always
+Environment=__REPLACED__
+
+[Install]
+WantedBy=multi-user.target
